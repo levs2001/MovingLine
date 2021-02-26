@@ -118,6 +118,7 @@ public:
 	void ChangeDir(Dir dir) {
 		//HACK: доделать
 		//Если ориентации одинаковые просто переставляем в обратном порядке
+	////
 		if (CheckOr(dir) == CheckOr(dir_)) {
 			reverse(lines_.begin(), lines_.end());
 		}
