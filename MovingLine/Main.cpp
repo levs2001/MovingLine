@@ -1,10 +1,10 @@
 #include <Windows.h>
 #include "MovingLine.h"
 
-#define TRACE_L 8
-#define LINE_L 70
-#define DIST 10
-#define SPEED 10
+#define TRACE_L 15
+#define LINE_L 50
+#define DIST 8
+#define SPEED 7
 
 char szClassName[] = "Window1";
 HWND hWnd;
@@ -14,9 +14,6 @@ LRESULT CALLBACK WndProc(HWND, UINT, UINT, LONG);
 ATOM registerMyClass(HINSTANCE hInstance);
 int createMyWindow(HINSTANCE hInstance, int nCmdShow);
 
-
-
-//MENU* pMenu = NULL;
 MovingLine* pMline = NULL;
 
 BOOL DrawLine(HDC hdc, int x1, int y1, int x2, int y2)
@@ -31,7 +28,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	MSG msg;
 	pMline = new MovingLine(SPEED, TRACE_L, LINE_L, DIST);
 	createMyWindow(hInstance, nCmdShow);
-
+	
 	while (GetMessage(&msg, 0, 0, 0))
 	{
 		TranslateMessage(&msg);
@@ -49,7 +46,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_CREATE: {
-		SetTimer(hWnd, 1, 200, NULL);
+		SetTimer(hWnd, 1, 1, NULL);
 		break;
 	}
 	case WM_TIMER: {
