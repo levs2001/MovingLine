@@ -2,9 +2,9 @@
 #include "MovingLine.h"
 
 #define TRACE_L 15
-#define LINE_L 50
-#define DIST 8
-#define SPEED 7
+#define LINE_L 90
+#define DIST 15
+#define SPEED 10
 
 char szClassName[] = "Window1";
 HWND hWnd;
@@ -27,6 +27,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 {
 	MSG msg;
 	pMline = new MovingLine(SPEED, TRACE_L, LINE_L, DIST);
+	
 	createMyWindow(hInstance, nCmdShow);
 	
 	while (GetMessage(&msg, 0, 0, 0))
@@ -35,10 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		DispatchMessage(&msg);
 	}
 
-
 	return msg.wParam;
-
-
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -46,7 +44,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_CREATE: {
-		SetTimer(hWnd, 1, 1, NULL);
+		SetTimer(hWnd, 1, 10, NULL);
 		break;
 	}
 	case WM_TIMER: {
@@ -80,7 +78,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
-		//DrawLine(hdc, 1, 1, 100, 100);
 		pMline->Draw(hdc);
 		EndPaint(hWnd, &ps);
 	}

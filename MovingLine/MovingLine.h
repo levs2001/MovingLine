@@ -50,8 +50,8 @@ public:
 	}
 
 	bool Draw(HDC hdc) const {
-		HPEN hPen = CreatePen(PS_SOLID, width_, RED); 
-		SelectObject(hdc, hPen); 
+		HPEN hPen = CreatePen(PS_SOLID, width_, (dBeg_.first % 40, dEnd_.second % 255, (dEnd_.first + dBeg_.second) % 255));
+		SelectObject(hdc, hPen);
 		POINT pt;
 		MoveToEx(hdc, dBeg_.first, dBeg_.second, &pt);
 		return LineTo(hdc, dEnd_.first, dEnd_.second);
@@ -141,8 +141,11 @@ public:
 			line.ChangeDir(dir, dist_, pos++, oldRD);
 		}
 	}
-	
-	void ChangeDir(Dir dir) {
+
+	bool ChangeDir(Dir dir) {
+		if (dir_ == dir)
+			return false;
+
 		if (CheckOr(dir) == CheckOr(dir_)) {
 			LinesRevert();
 			LinesChangeDir(dir, true);
@@ -161,6 +164,7 @@ public:
 		}
 
 		dir_ = dir;
+		return true;
 	}
 
 	void MoveLines() {
