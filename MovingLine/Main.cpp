@@ -1,8 +1,8 @@
 #include <Windows.h>
 #include "MovingLine.h"
 
-#define TRACE_L 15
-#define LINE_L 90
+#define TRACE_L 35
+#define LINE_L 400
 #define DIST 15
 #define SPEED 10
 

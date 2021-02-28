@@ -54,7 +54,9 @@ public:
 		SelectObject(hdc, hPen);
 		POINT pt;
 		MoveToEx(hdc, dBeg_.first, dBeg_.second, &pt);
-		return LineTo(hdc, dEnd_.first, dEnd_.second);
+		LineTo(hdc, dEnd_.first, dEnd_.second);
+		DeleteObject(hPen);
+		return true;
 	}
 
 	void ChangeDir(const Dir dir, size_t dist, size_t pos, bool oldRD) {
